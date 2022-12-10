@@ -1,5 +1,10 @@
+<script setup lang="ts">
+const colorMode = useColorMode();
+</script>
+
 <template>
-  <div>
-    <NuxtWelcome />
+  <div :theme="colorMode.toString()">
+    <NavBar />
+    <NuxtLayout />
   </div>
 </template>
