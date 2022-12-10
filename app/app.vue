@@ -1,10 +1,7 @@
-<script setup lang="ts">
-const colorMode = useColorMode();
-</script>
-
 <template>
-  <div :theme="colorMode.toString()">
-    <NavBar />
-    <NuxtLayout />
+  <div class="w-[100vw] h-[100vh]" :class="$colorMode">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

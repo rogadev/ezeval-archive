@@ -1,6 +1,6 @@
 <template>
-  <nav>
-    <title>EzEval</title>
+  <nav class="flex flex-row items-center justify-between">
+    <h1>EzEval</h1>
     <NavActions />
   </nav>
 </template>
