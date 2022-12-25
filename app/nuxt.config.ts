@@ -5,10 +5,12 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/partytown',
-    'nuxt-icon'
+    'nuxt-icon',
+    '@sidebase/nuxt-auth'
   ],
   runtimeConfig: {
-    // apiSecret: '123',
+    googleClientID: process.env.GOOGLE_CLIENT_ID,
+    googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     public: {
       apiBase: '/api'
     }
