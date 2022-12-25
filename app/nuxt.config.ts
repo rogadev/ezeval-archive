@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/partytown',
     'nuxt-icon',
-    '@sidebase/nuxt-auth'
+    '@sidebase/nuxt-auth',
+    '@pinia/nuxt'
   ],
   runtimeConfig: {
     googleClientID: process.env.GOOGLE_CLIENT_ID,

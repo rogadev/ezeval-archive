@@ -1,4 +1,4 @@
-import { acceptHMRUpdate, defineStore } from 'pinia';
+import { defineStore } from 'pinia';
 
 export const useAuth = defineStore('auth', {
 
@@ -6,11 +6,6 @@ export const useAuth = defineStore('auth', {
     isLoggedIn: false,
     user: null
   }),
-
-  getters: {
-    isLoggedIn: (state) => state.isLoggedIn,
-    user: (state) => state.user
-  },
 
   actions: {
     login(user) {
