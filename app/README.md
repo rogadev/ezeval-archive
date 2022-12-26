@@ -23,23 +23,27 @@ EZEval is a web application that allows window cleaning companies to quickly and
 - [Pinia](https://nuxt.com/modules/pinia)
 - [Color-Mode](https://nuxt.com/modules/color-mode)
 
-## Features & Roadmap
+## Features & Road Map
 
 At the time of writing this README, the application is still in development. The following features are planned for the first release:
 
 - [x] User Authentication
 - [x] User Registration
 - [x] User Profile
+- [ ] Prisma Integration
+- [ ] PocketBase Integration (Initial DB)
 - [ ] User Dashboard
-- [ ] User Settings
+- [ ] User Settings (Simplified)
 - [ ] User Roles (Admin, Evaluator, Customer)
 - [ ] User Permissions
 - [ ] User Password Reset
 - [ ] User Email Verification
-- [ ] 2FA
+- [ ] 2FA (Maybe)
 - [ ] Database Integration
 - [ ] Custom Price Sheet Creation
 - [ ] Custom Price Sheet Management
+- [ ] User Settings (Advanced)
+- [ ] Role Settings (Admin Control, Evaluator Settings, Customer Settings - Simplified)
 - [ ] Quote Creation
 - [ ] Quote Management
 - [ ] Quote Sharing
