@@ -1,10 +1,10 @@
 <script setup lang="ts">
   import { useAuth } from "~/stores/auth";
   const { isLoggedIn } = useAuth();
+  // const isLoggedIn = true;
   const links = [
-    { name: "Home", path: "/", hiddenIfLoggedIn: false },
-    { name: "About", path: "/about", hiddenIfLoggedIn: false },
-    { name: "Sign Up", path: "/register", hiddenIfLoggedIn: true },
+    { name: "Home", path: "/"},
+    { name: "About", path: "/about"},
   ];
 </script>
 
@@ -17,5 +17,8 @@
       class="p-2 hover:bg-gray-100 rounded hover:text-slate-900"
       >{{ link.name }}</nuxt-link
     >
+    <nuxt-link v-if="!isLoggedIn" to="/register" class="p-2">
+      Sign Up
+    </nuxt-link>
   </div>
 </template>
