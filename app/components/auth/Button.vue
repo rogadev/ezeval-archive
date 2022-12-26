@@ -3,6 +3,10 @@
     <Icon v-if="isLight" name="mdi:account-plus-outline" />
     <Icon v-else name="mdi:account-plus" />
   </nuxt-link>
+  <nuxt-link to="/login" class="p-2" title="Login">
+    <Icon v-if="isLight" name="mdi:login-variant" />
+    <Icon v-else name="mdi:login" />
+  </nuxt-link>
 </template>
 
 <script setup>

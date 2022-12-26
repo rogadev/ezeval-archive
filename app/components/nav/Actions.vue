@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-row justify-center">
     <ThemeToggle />
-    <ProfileIcon />
-    <AuthButton v-if="!isLoggedIn" />
+    <ProfileIcon v-if="isLoggedIn" />
+    <AuthButton v-else />
   </div>
 </template>
 
