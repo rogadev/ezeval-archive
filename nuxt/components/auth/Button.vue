@@ -1,16 +1,16 @@
 <template>
-  <button @click="toggleColorMode" class="p-2">
-    <Icon v-if="isLight" name="mdi:weather-night" />
-    <Icon v-else name="mdi:white-balance-sunny" />
-  </button>
+  <nuxt-link to="/register" class="p-2" title="Register">
+    <Icon v-if="isLight" name="mdi:account-plus-outline" />
+    <Icon v-else name="mdi:account-plus" />
+  </nuxt-link>
+  <nuxt-link to="/login" class="p-2" title="Login">
+    <Icon name="heroicons-outline:login" />
+  </nuxt-link>
 </template>
 
 <script setup>
 const colorMode = useColorMode();
 const isLight = computed(() => colorMode.value === "light");
-const toggleColorMode = () => {
-  colorMode.value = isLight.value ? "dark" : "light";
-};
 </script>
 
 <style>
