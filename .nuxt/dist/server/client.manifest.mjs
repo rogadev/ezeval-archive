@@ -1,1 +1,0 @@
-export { default } from "file:///C:/Development/victoria-window-cleaning/capstone/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
