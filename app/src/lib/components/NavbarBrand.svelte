@@ -1,3 +1,4 @@
-<div class="max-h-[50px]">
-  <img src="" alt="">
+<div class="grid grid-flow-col items-center align-middle gap-4 py-4">
+  <img src="https://via.placeholder.com/30" alt="logo" >
+  <span class="text-xl font-semibold hidden sm:block">Confusion Meter</span>
 </div>
