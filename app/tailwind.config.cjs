@@ -1,14 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
+  darkMode: 'class',
   theme: {
-    colors: {
-      brand: "#22C55E",
-      dark: "#0F172A",
-      mid: "#ABB8C9",
-      light: "#FAFAFA",
+    extend: {
+      colors: {
+        brand: "#22C55E",
+        dark: "#0F172A",
+        mid: "#ABB8C9",
+        light: "#FAFAFA",
+      },
     },
-    extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+  ]
 };
