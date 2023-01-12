@@ -11,9 +11,9 @@
         <NavbarLinks />
       </div>
       <div class="block md:hidden">
-        <div id="links">
+
           <NavbarLinks />
-        </div>
+       
         <div id="auth"></div>
       </div>
     </nav>
