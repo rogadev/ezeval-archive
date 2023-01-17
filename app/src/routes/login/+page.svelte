@@ -5,3 +5,7 @@
 <PageHeroSection>
   <H1>Login</H1>
 </PageHeroSection>
+
+<form method="POST">
+  <button formaction="?/login&provider=github" >Github</button>
+</form>
