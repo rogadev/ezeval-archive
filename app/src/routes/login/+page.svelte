@@ -7,5 +7,5 @@
 </PageHeroSection>
 
 <form method="POST">
-  <button formaction="?/login&provider=github" >Github</button>
+  <button formaction="?/login&provider=google" >Github</button>
 </form>

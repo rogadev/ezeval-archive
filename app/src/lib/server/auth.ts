@@ -1,5 +1,6 @@
 import { redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
+import { supabase } from "$lib/db";
 
 export const load: PageServerLoad = async ({ locals }) => {
   // If we have no user in locals, we want to redirect to home.
@@ -9,14 +10,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 export const actions: Actions = {
-  login: async ({ cookies }) => {
-    cookies.set("auth", "token", {
-      path: "/",
-      httpOnly: true,
-      sameSite: "strict",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24 * 7,
-    });
-    throw redirect(303, "/");
+  login: async ({ provider }) => {
+    const response = await supabase.auth.signInWithOAuth({ provider });
+    console.log(response);
+
+    // throw redirect(303, "/");
   },
 };

@@ -1,11 +1,13 @@
 import { getServerSession } from '@supabase/auth-helpers-sveltekit';
 import type { Handle } from "@sveltejs/kit";
 import '$lib/db';
+import { supabase } from '$lib/db';
 
 export const handle: Handle = async ({ event, resolve }) => {
   // Authenticate the user.
   event.locals.session = await getServerSession(event);
-  console.log(event.locals.session);
+  console.log('event locals session', event.locals.session);
+  console.log('supabase session', await (await supabase.auth.getSession()).data);
 
   // Evaluate the path to see if it needs protecting.
   // if (event.url.pathname.startsWith('/protected')) {
