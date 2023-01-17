@@ -14,7 +14,7 @@ export const actions: Actions = {
       path: "/",
       httpOnly: true,
       sameSite: "strict",
-      secure: process.env.NODE_ENV === "productions",
+      secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 24 * 7,
     });
     throw redirect(303, "/");
