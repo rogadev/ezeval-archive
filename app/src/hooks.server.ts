@@ -1,7 +1,6 @@
+import '$lib/db';
 import { getServerSession } from '@supabase/auth-helpers-sveltekit';
 import type { Handle } from "@sveltejs/kit";
-import '$lib/db';
-import { supabase } from '$lib/db';
 
 export const handle: Handle = async ({ event, resolve }) => {
   // Authenticate the user.
