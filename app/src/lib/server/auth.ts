@@ -10,10 +10,19 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 export const actions: Actions = {
-  login: async ({ provider }) => {
-    const response = await supabase.auth.signInWithOAuth({ provider });
-    console.log(response);
-
-    // throw redirect(303, "/");
+  // working
+  login: async ({ url }) => {
+    const provider = url.searchParams.get("provider") as Provider;
+    const { data, error: err } = await supabase.auth.signInWithOAuth({ provider });
+    if (err) {
+      console.error(err);
+      return fail(400, "Something went wrong");
+    }
+    throw redirect(303, data.url);
   },
+  // untested
+  logout: async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.error('Error logging out:', error.message);
+  }
 };

@@ -6,8 +6,7 @@ import { supabase } from '$lib/db';
 export const handle: Handle = async ({ event, resolve }) => {
   // Authenticate the user.
   event.locals.session = await getServerSession(event);
-  console.log('event locals session', event.locals.session);
-  console.log('supabase session', await (await supabase.auth.getSession()).data);
+  // console.log('event locals session', event.locals.session); // working
 
   // Evaluate the path to see if it needs protecting.
   // if (event.url.pathname.startsWith('/protected')) {
