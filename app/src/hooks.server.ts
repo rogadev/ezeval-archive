@@ -28,8 +28,11 @@ export const handle: Handle = async ({ event, resolve }) => {
     throw redirect(303, '/dashboard');
   }
 
-  // Route Guard Redirect.
+  // Not Logged In, Route Guard, Redirect.
   if (event.url.pathname.startsWith('/dashboard') && !session?.user.email) {
+    throw redirect(303, '/login');
+  }
+  if (event.url.pathname.startsWith('/profile') && !session?.user.email) {
     throw redirect(303, '/login');
   }
 
