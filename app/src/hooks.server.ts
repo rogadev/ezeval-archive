@@ -2,6 +2,7 @@ import '$lib/db';
 import { getServerSession } from '@supabase/auth-helpers-sveltekit';
 import type { Handle } from "@sveltejs/kit";
 import { fail, redirect } from "@sveltejs/kit";
+// const { log } = console;
 
 export const handle: Handle = async ({ event, resolve }) => {
   // Authenticate the user.
@@ -17,21 +18,19 @@ export const handle: Handle = async ({ event, resolve }) => {
   // Attempt to get our session.
   try {
     session = await getServerSession(event);
-    event.locals.session = session;
   } catch (e) {
     console.error('Supabase getServerSession Error: ', e);
     fail(500, 'Something went wrong');
   }
 
-  // Route guard
-  if (!event.url.pathname.match('/welcome')) {
-    if (!session) {
-      throw redirect(302, '/welcome');
-    }
-  } else {
-    if (session) {
-      throw redirect(303, '/');
-    }
+  // Logged in, Redirect.
+  if (event.url.pathname.match('/login') && session?.user.email) {
+    throw redirect(303, '/dashboard');
+  }
+
+  // Route Guard Redirect.
+  if (event.url.pathname.startsWith('/dashboard') && !session?.user.email) {
+    throw redirect(303, '/login');
   }
 
   const response = await resolve(event);
