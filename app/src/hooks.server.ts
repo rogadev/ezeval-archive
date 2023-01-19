@@ -1,21 +1,38 @@
+import '$lib/db';
 import { getServerSession } from '@supabase/auth-helpers-sveltekit';
 import type { Handle } from "@sveltejs/kit";
-import '$lib/db';
+import { fail, redirect } from "@sveltejs/kit";
+// const { log } = console;
 
 export const handle: Handle = async ({ event, resolve }) => {
   // Authenticate the user.
-  event.locals.session = await getServerSession(event);
-  console.log(event.locals.session);
+  let session = null;
 
-  // Evaluate the path to see if it needs protecting.
-  // if (event.url.pathname.startsWith('/protected')) {
-  //   // In this case, we're routing to '/protected', so lets make sure we have a user. If not, redirect to the home page or login page.
-  //   if (!event.locals.user) throw redirect(303, "/");
-  //   // Maybe we want to only let ADMIN to the '/protected/admin' area.
-  //   if (event.locals.user.role !== "ADMIN") throw redirect(303, "/protected");
+  // TODO - Get this working. No idea why but this will not log the user out.
+  // if (event.request.method === 'POST' && event.request.url.includes('?logout')) {
+  //   console.log('server hooks. logging out.');
+  //   await supabase.auth.signOut();
+  //   throw redirect(303, '/welcome');
   // }
 
-  const response = await resolve(event);
+  // Attempt to get our session.
+  try {
+    session = await getServerSession(event);
+  } catch (e) {
+    console.error('Supabase getServerSession Error: ', e);
+    fail(500, 'Something went wrong');
+  }
 
+  // Logged in, Redirect.
+  if (event.url.pathname.match('/login') && session?.user.email) {
+    throw redirect(303, '/dashboard');
+  }
+
+  // Route Guard Redirect.
+  if (event.url.pathname.startsWith('/dashboard') && !session?.user.email) {
+    throw redirect(303, '/login');
+  }
+
+  const response = await resolve(event);
   return response;
 };
