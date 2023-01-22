@@ -3,3 +3,4 @@
 </svelte:head>
 
 <h1>Home Page. Not route guarded.</h1>
+<a href="/profile">ffffffff</a>
