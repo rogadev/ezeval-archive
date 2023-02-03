@@ -1,38 +1,42 @@
 import '$lib/db';
 import { getServerSession } from '@supabase/auth-helpers-sveltekit';
-import type { Handle } from "@sveltejs/kit";
+import type { Session } from '@supabase/supabase-js';
+import type { Handle, RequestEvent } from "@sveltejs/kit";
 import { fail, redirect } from "@sveltejs/kit";
-// const { log } = console;
+import inDevMode from "$lib/server/mode";
 
-export const handle: Handle = async ({ event, resolve }) => {
-  // Authenticate the user.
-  let session = null;
-
-  // TODO - Get this working. No idea why but this will not log the user out.
-  // if (event.request.method === 'POST' && event.request.url.includes('?logout')) {
-  //   console.log('server hooks. logging out.');
-  //   await supabase.auth.signOut();
-  //   throw redirect(303, '/welcome');
-  // }
-
-  // Attempt to get our session.
+/**
+ * Reaches out to our getServerSession function from @supabase/auth-helpers-sveltekit to get the current session and returns it, or null if there is no session.
+ * @param event Request event
+ * @returns Promise<Session | null>
+ */
+const getSupabaseSession = async (event: RequestEvent) => {
+  let session: Session | null = null;
   try {
     session = await getServerSession(event);
   } catch (e) {
-    console.error('Supabase getServerSession Error: ', e);
+    if (inDevMode) console.error('Supabase getServerSession Error: ', e);
     fail(500, 'Something went wrong');
   }
+  return session;
+};
 
-  // Logged in, Redirect.
-  if (event.url.pathname.match('/login') && session?.user.email) {
-    throw redirect(303, '/dashboard');
-  }
+// This is the main function that will be called by SvelteKit to handle server requests.
+export const handle: Handle = async ({ event, resolve }) => {
+  const session = await getSupabaseSession(event);
+  const loggedIn = session?.user.email ? true : false;
+  const loggingIn = event.url.pathname.match('/login') ? true : false;
+  const intendedPath = event.url.pathname;
+  const guardedPaths = ['/dashboard', '/profile', '/settings', '/admin'];
+  const intendedPathIsGuarded = guardedPaths.some((guardedPath: string) => intendedPath.startsWith(guardedPath));
 
-  // Route Guard Redirect.
-  if (event.url.pathname.startsWith('/dashboard') && !session?.user.email) {
+  if (!loggedIn && intendedPathIsGuarded) {
     throw redirect(303, '/login');
   }
 
-  const response = await resolve(event);
-  return response;
+  if (loggingIn && loggedIn) {
+    throw redirect(303, '/dashboard');
+  }
+
+  return await resolve(event);
 };

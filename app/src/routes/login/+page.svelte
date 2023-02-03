@@ -4,11 +4,10 @@
 
 <svelte:head>
   <title>
-    EzEval | Login
+    EzEval | Login / Register
   </title>
 </svelte:head>
 
-<!-- Login -->
 <div class="container w-4/5 mx-auto border shadow m-8 p-4 flex flex-col items-center">
   <H2>Login / Register</H2>
   <hr class="w-4/5 my-4">
