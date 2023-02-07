@@ -1,7 +1,7 @@
 import supabaseClient from '$lib/db';
 import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
-import type { Actions } from './$types';
+import type { Actions } from '../$types';
 import type { AuthError, Provider } from '@supabase/supabase-js';
 
 export const actions: Actions = {
@@ -28,7 +28,7 @@ export const actions: Actions = {
 				return fail(400, 'Something went wrong');
 			}
 			// Otherwise, we've logged in successfully - redirect to dashboard.
-			return redirect(303, '/dashboard');
+			return redirect(303, '/account');
 		}
 		// If we have a provider, we're using OAuth to log in.
 		const {
@@ -36,7 +36,7 @@ export const actions: Actions = {
 			error
 		} = await supabaseClient.auth.signInWithOAuth({
 			provider,
-			options: { redirectTo: `${event.url.origin}/launch-pad` }
+			options: { redirectTo: `${event.url.origin}/account` }
 		});
 		if (error) {
 			if (error instanceof AuthError) {

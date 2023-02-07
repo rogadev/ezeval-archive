@@ -31,8 +31,5 @@ export const getUsersOrganizations = async (user_id: UserId) => {
     .eq('user_id', user_id);
   if (usersOrganizationsError) return { data: null, error: usersOrganizationsError };
   console.log('usersOrganizations', usersOrganizations);
-
-  // TODO finish
-
-  return { data, error };
+  return { data: usersOrganizations, error: null };
 };

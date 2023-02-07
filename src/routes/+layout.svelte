@@ -39,9 +39,29 @@
 
 <div class={useDark ? 'dark' : ''}>
 	<Navbar {session} mode={useDark} {toggleTheme} />
-	<div class=" bg-light text-black dark:bg-dark dark:bg-opacity-95 dark:text-white">
-		<div class="flex items-stretch justify-items-stretch">
+	<div
+		class="bg-gray-100 bg-cover bg-fixed bg-center bg-no-repeat text-black dark:bg-gray-900 dark:bg-opacity-95 dark:text-white"
+	>
+		<div class="flex min-h-[92.59vh] flex-col items-center justify-center">
 			<slot />
 		</div>
 	</div>
 </div>
+
+<style>
+	:global(h1) {
+		font-size: 2rem;
+		font-weight: 700;
+	}
+	:global(h2) {
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
+	:global(h3) {
+		font-size: 1.25rem;
+		font-weight: 700;
+	}
+	:global(p) {
+		margin: 1rem;
+	}
+</style>
