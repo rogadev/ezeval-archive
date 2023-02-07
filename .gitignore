@@ -1,1 +1,4 @@
 archived_work
+.nuxt
+node_modules
+.env
