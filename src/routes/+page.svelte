@@ -9,7 +9,7 @@
 </section>
 
 <section class="my-8">
-	<div class="flex flex-row items-center justify-evenly">
+	<div class="flex flex-col items-center justify-center">
 		<a href="/login">Login</a>
 		<a href="/signup">Sign Up</a>
 	</div>
