@@ -19,13 +19,12 @@ const getSupabaseSession = async (event: RequestEvent) => {
 	return { session };
 };
 
-const { log } = console;
 /**
  * This main hook is called on every request.
  */
 export const handle: Handle = async ({ event, resolve }: RequestResolver) => {
 	const intendedPath = event.url.pathname;
-	log('intended path', intendedPath);
+	console.log('Request: ', intendedPath, Intl.DateTimeFormat().format(new Date()));
 	const publicPaths = ['/login', '/signup'];
 	const intendedPathIsPublic = () => {
 		if (intendedPath === '/') return true;
@@ -35,7 +34,6 @@ export const handle: Handle = async ({ event, resolve }: RequestResolver) => {
 	event.locals.session = session ? session : null;
 
 	if (intendedPathIsPublic() && session) {
-		log('intended path is guarded', intendedPath);
 		throw redirect(302, '/dashboard');
 	}
 	if (!session && !intendedPathIsPublic()) throw redirect(302, '/login');

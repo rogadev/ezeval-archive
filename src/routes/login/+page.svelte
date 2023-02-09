@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Auth from '$lib/components/auth/Auth.svelte';
+	import FeatureSection from '$lib/components/ui/wrappers/FeatureSection.svelte';
 
 	$: session = $page.data.session;
 </script>
 
 {#if !session}
-	<div class=" bg-light text-black dark:bg-light dark:text-black">
+	<FeatureSection>
 		<Auth />
-	</div>
+	</FeatureSection>
 {/if}
 
 <!-- TODO - Need to rip auth component apart. Split into 2 parts - signup/signin -->

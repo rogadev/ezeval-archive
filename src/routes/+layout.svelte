@@ -39,10 +39,8 @@
 
 <div class={useDark ? 'dark' : ''}>
 	<Navbar {session} mode={useDark} {toggleTheme} />
-	<div
-		class="bg-gray-100 bg-cover bg-fixed bg-center bg-no-repeat text-black dark:bg-gray-900 dark:bg-opacity-95 dark:text-white"
-	>
-		<div class="flex min-h-[92.59vh] flex-col items-center justify-center">
+	<div class=" bg-light text-black dark:bg-dark dark:bg-opacity-95 dark:text-white">
+		<div class="flex items-stretch justify-items-stretch">
 			<slot />
 		</div>
 	</div>
